@@ -12,33 +12,26 @@ body {
 
 .cardHolder {
   background-color: white;
-  /* border-radius: 25px; */
-  width: 10rem;
-  height: 20rem;
+  border-radius: 5px;
 }
 
 .upperSuit {
-  border-radius: 10px;
-
   font-size: xx-large;
   text-align: start;
+  margin-inline: 0.3rem;
 }
 .lowerSuit {
-  /* border-radius: 10px; */
-  background-color: white;
-  /* position: absolute;
-  bottom: 30px; */
-  /* text-align: end; */
+  font-size: xx-large;
+  text-align: end;
+  margin-inline: 0.3rem;
 }
 
 #numberSelected {
-  /* height: 80%; */
   align-items: center;
   justify-content: center;
   text-align: center;
   text-justify: center;
   font-size: 400%;
-
   padding: 3rem;
   font-weight: bolder;
 }
