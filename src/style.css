@@ -1,1 +1,44 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-color: green;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardHolder {
+  background-color: white;
+  /* border-radius: 25px; */
+  width: 10rem;
+  height: 20rem;
+}
+
+.upperSuit {
+  border-radius: 10px;
+
+  font-size: xx-large;
+  text-align: start;
+}
+.lowerSuit {
+  /* border-radius: 10px; */
+  background-color: white;
+  /* position: absolute;
+  bottom: 30px; */
+  /* text-align: end; */
+}
+
+#numberSelected {
+  /* height: 80%; */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-justify: center;
+  font-size: 400%;
+
+  padding: 3rem;
+  font-weight: bolder;
+}
