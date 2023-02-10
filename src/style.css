@@ -35,3 +35,11 @@ body {
   padding: 3rem;
   font-weight: bolder;
 }
+
+#afterWinMenu {
+  display: flex;
+}
+
+#playingButtons {
+  display: flex;
+}
