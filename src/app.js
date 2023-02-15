@@ -32,10 +32,14 @@ function checkingForWinnerCard(a, b) {
 
 function mainDomFunction() {
   counter++;
+  if (counter > 0) {
+    const image = document.getElementById("cardCoverImage");
+    image.style.display = "none";
+  }
   if (counter === 1) {
-    counterButton.textContent = "1 single time played so far";
+    counterButton.textContent = "1 attempt so far";
   } else {
-    counterButton.textContent = ` ${counter} times played`;
+    counterButton.textContent = ` You've played ${counter} times`;
   }
   const anewSuit = Math.floor(Math.random() * 3);
   const anewRamdomizer = Math.floor(Math.random() * 13);
@@ -82,7 +86,8 @@ function mainDomFunction() {
     console.log("currentPlayer !!", currentPlayer);
 
     console.log("The name on the winner note", currentPlayer.name);
-    document.getElementById("numberSelected").innerHTML = "WINNER!";
+    document.getElementById("numberSelected").innerHTML = "  !WINNER!  ";
+    // document.getElementById("numberSelected").style.f = "none";
 
     setTimeout(function() {
       alert(
@@ -108,6 +113,9 @@ anewCard.onclick = mainDomFunction;
 
 window.onload = function() {
   confirm("Ready to play?");
+
+  document.getElementById("afterWinMenu").style.display = "none";
+
   const player = {
     name: "",
     age: 0,
@@ -129,40 +137,60 @@ window.onload = function() {
 
 const button = document.getElementById("btn");
 button.onclick = function(event) {
-  button.textContent = `Hope you're releasing your stress! You've pressed ${event.detail} times this amnesiac button`;
+  document.getElementById(
+    "topHolder1"
+  ).textContent = `Hope you're releasing your stress! You've pressed ${event.detail} times this amnesiac button`;
 };
 
 const top = document.getElementById("top");
+const topHolderWrapper = document.getElementById("topHolderWrapper");
 top.onclick = function() {
   const allPlayers = localStorage.getItem("allPlayers");
-  console.log("all players", allPlayers);
   const parsedAllPlayers = JSON.parse(allPlayers);
-  console.log("parsed all players", parsedAllPlayers);
   const bestScoreArray = parsedAllPlayers.sort((a, b) => a.score - b.score);
-  console.log("bestScoreArray", bestScoreArray);
   let filteredBestScoreArray = bestScoreArray?.filter(el => el.score !== 0);
-  console.log("filteredBestScoreArray", filteredBestScoreArray);
-  console.log(
-    "filteredBestScoreArray[0].score",
-    filteredBestScoreArray?.length && filteredBestScoreArray[0].score
-  );
-  let top3 = "Come on, you have to play first :)";
-  if (filteredBestScoreArray?.length && filteredBestScoreArray.length == 1) {
-    top3 = ` ${filteredBestScoreArray[0].name} is the only and best player with ${filteredBestScoreArray[0].score} points!`;
+  topHolderWrapper.style.display = "block";
+  const topHolder1 = document.getElementById("topHolder1");
+  const topHolder2 = document.getElementById("topHolder2");
+  const topHolder3 = document.getElementById("topHolder3");
+
+  if (!filteredBestScoreArray.length || filteredBestScoreArray.length == 0) {
+    let top0 = "Come on! You have to play first :)";
+    topHolder1.textContent = top0;
+  } else if (
+    filteredBestScoreArray?.length &&
+    filteredBestScoreArray.length == 1
+  ) {
+    let top1 = `Mr/Ms. ${filteredBestScoreArray[0].name} is the only and best player with ${filteredBestScoreArray[0].score} points!`;
+    topHolder1.textContent = top1;
+  } else if (
+    filteredBestScoreArray?.length &&
+    filteredBestScoreArray.length == 2
+  ) {
+    const top31 = ` 1st Place: ${filteredBestScoreArray[0].name}    ${filteredBestScoreArray[0].score} points!`;
+    const top32 = `2nd Place: ${filteredBestScoreArray[1].name}    ${filteredBestScoreArray[1].score} points!`;
+    topHolder1.textContent = top31;
+    console.log("top31", top31);
+    topHolder2.textContent = top32;
+    console.log("top32", top32);
+  } else if (
+    filteredBestScoreArray?.length &&
+    filteredBestScoreArray.length > 2
+  ) {
+    const top31 = ` 1st Place: ${filteredBestScoreArray[0].name}    ${filteredBestScoreArray[0].score} points!`;
+    const top32 = `2nd Place: ${filteredBestScoreArray[1].name}    ${filteredBestScoreArray[1].score} points!`;
+    const top33 = `3rd Place: ${filteredBestScoreArray[2].name}    ${filteredBestScoreArray[2].score} points!`;
+    topHolder1.textContent = top31;
+    topHolder2.textContent = top32;
+    topHolder3.textContent = top33;
   }
-  if (filteredBestScoreArray?.length && filteredBestScoreArray.length == 2) {
-    top3 = ` 1st Place: ${filteredBestScoreArray[0].name} - ${filteredBestScoreArray[0].score} points!
-    2nd Place: ${filteredBestScoreArray[1].name} - ${filteredBestScoreArray[1].score} points!`;
-  }
-  if (filteredBestScoreArray?.length && filteredBestScoreArray.length == 3) {
-    top3 = ` 1st Place: ${filteredBestScoreArray[0].name} - ${filteredBestScoreArray[0].score} points! 2nd Place: ${filteredBestScoreArray[1].name} - ${filteredBestScoreArray[1].score} points! 3rd Place: ${filteredBestScoreArray[2].name} - ${filteredBestScoreArray[2].score} points`;
-  }
-  top.textContent = top3;
 };
 
 const samePlayerButton = document.getElementById("samePlayerButton");
 samePlayerButton.onclick = function() {
   samePlayerButton.textContent = "Same player";
+  document.getElementById("topHolderWrapper").style.display = "none";
+
   const samePlayer = {
     name: "",
     age: 0,
@@ -187,6 +215,7 @@ samePlayerButton.onclick = function() {
   counter = 0;
   afterWinMenu.style.display = "none";
   playingButtons.style.display = "block";
+  counterButton.textContent = "Let's go again!";
 };
 
 const differentPlayerButton = document.getElementById("differentPlayerButton");
@@ -196,12 +225,13 @@ differentPlayerButton.onclick = function() {
     age: 0,
     score: 0
   };
+  document.getElementById("topHolderWrapper").style.display = "none";
   const allPlayersNewPlayer = localStorage.getItem("allPlayers");
   console.log("all players New Player", allPlayersNewPlayer);
   const parsedAllPlayersNewPlayer = JSON.parse(allPlayersNewPlayer);
   console.log("parsed all players New Player", parsedAllPlayersNewPlayer);
 
-  differentPlayerButton.textContent = "different Player Button";
+  differentPlayerButton.textContent = "New Player";
 
   newPlayer.age = prompt("How old are you?");
 
@@ -220,6 +250,11 @@ differentPlayerButton.onclick = function() {
   } else {
     document.write("You're under 18? Be careful out there....");
   }
+};
+
+const counterHolder = document.getElementById("counter");
+counterHolder.onclick = function() {
+  counterHolder.textContent = "Take a New Card";
 };
 
 const exit = document.getElementById("exit");

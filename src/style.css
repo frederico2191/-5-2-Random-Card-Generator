@@ -5,6 +5,37 @@ body {
   user-select: none;
 }
 
+button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  background: rgb(0, 128, 1);
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+}
+
+button:hover,
+button:focus {
+  background: #83e91dc9;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -12,22 +43,33 @@ body {
 }
 
 .cardHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 2rem;
   background-color: white;
   border-radius: 5px;
-  width: 300px;
-  height: 500px;
+  min-width: 200px;
+  min-height: 280px;
+  position: relative;
+  background-color: rgb(231, 230, 237);
 }
 
 .upperSuit {
   font-size: xx-large;
   text-align: start;
   margin-inline: 0.3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .lowerSuit {
   font-size: xx-large;
   text-align: end;
   margin-inline: 0.3rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .blackSuit {
@@ -38,19 +80,64 @@ body {
 }
 
 #numberSelected {
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  text-justify: center;
   font-size: 400%;
-  padding: 3rem;
   font-weight: bolder;
 }
 
 #afterWinMenu {
-  display: flex;
+  display: none;
 }
 
-#playingButtons {
+#playingButtons,
+#afterWinMenu {
+  margin-top: 1rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playing-button {
+  margin-right: 0.75rem;
+  width: 180px;
+}
+.afterWin-button {
+  margin-right: 0.75rem;
+  font-size: large;
+  margin-bottom: 1rem;
+}
+
+.playing-button:last-child {
+  margin-right: 0;
+}
+
+#winnerMessage {
+  font-size: larger;
+  font-weight: 400px;
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+#topHolderWrapper {
+  display: block;
+  margin-left: 5rem;
+  min-width: 100px;
+  min-height: 200px;
+  margin-top: 5rem;
+  border-radius: 5px;
+}
+
+.topHolder {
+  /* color: white; */
+  font-size: larger;
+}
+
+#topHolder1 {
+  font-size: larger;
+}
+
+#cardCoverImage {
+  object-fit: cover;
+  height: 280px;
+  width: 180px;
 }

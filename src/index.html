@@ -17,15 +17,23 @@
     <div class="container-fluid text-center">
       <div class="wrapper">
         <div class="cardHolder">
+          <img
+            src="/src/assets/img/playingCardBack.png"
+            ´
+            id="cardCoverImage"
+            alt="playing card Back"
+          />
           <div class="upperSuit suit"></div>
-          <div id="numberSelected">I am the number to be selected</div>
+          <div id="numberSelected"></div>
           <div class="lowerSuit suit"></div>
         </div>
       </div>
       <div id="playingButtons">
-        <input id="anewCard" type="button" value="Give me a new card" />
-        <button id="counter">Time to play!</button>
-        <button id="btn">Try me<i class="fa-solid fa-otter"></i></button>
+        <button id="anewCard" class="playing-button">New Card</button>
+        <button id="counter" class="playing-button">Time to play!</button>
+        <button id="btn" class="playing-button">
+          Try me <i class="fa-solid fa-otter"></i>
+        </button>
       </div>
       <div id="afterWinMenu">
         <button id="top">
@@ -33,9 +41,14 @@
         </button>
         <button id="samePlayerButton">Play again</button>
         <button id="differentPlayerButton">
-          Continue with different player
+          New Player
         </button>
         <button id="exit">Quit Game!</button>
+      </div>
+      <div id="topHolderWrapper">
+        <div id="topHolder1" class="topHolder afterWin-button"></div>
+        <div id="topHolder2" class="afterWin-button"></div>
+        <div id="topHolder3" class="afterWin-button"></div>
       </div>
     </div>
     <script
